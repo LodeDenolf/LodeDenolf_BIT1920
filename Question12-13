@@ -1,0 +1,37 @@
+Question12
+
+curl 'https://rest.ensembl.org/variation/Danio_rerio/rs499899635?'
+
+<html><title>EnsEMBL::REST</title><body><pre>--- 
+MAF: ~
+ambiguity: &#39;Y&#39;
+ancestral_allele: ~
+evidence: []
+
+mappings: 
+  - 
+    allele_string: T/C
+    assembly_name: GRCz11
+    coord_system: chromosome
+    end: 10138412
+    location: 10:10138412-10138412
+    seq_region_name: 10
+    start: 10138412
+    strand: 1
+minor_allele: ~
+most_severe_consequence: intergenic_variant
+name: rs499899635
+source: Variants (including SNPs and indels) imported from dbSNP (mapped to GRCz11)
+synonyms: []
+
+var_class: SNP
+
+
+Question13
+
+curl 'https://rest.ensembl.org/sequence/region/Mus_musculus/2:26457903:26458003?' -H 'Content-type:text/x-fasta'
+
+>chromosome:GRCm38:2:26457903:26458003:1
+TTTAGCAAAATGTGGACAACCATCAGTATCATTTTTATTGCAAATTAGTTAACAAAAAAA
+GATGAAAAAAATACATCATTTTCATTACCTACAGTTTTGCA
+

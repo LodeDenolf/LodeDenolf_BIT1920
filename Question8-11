@@ -1,0 +1,36 @@
+Question8
+
+db.getCollection('bioinf_mongo_examen').find({method_of_admission:'TABLET;BUCCAL, SUBLINGUAL'},{drug: 1,_id: 0})
+{
+    "drug" : "DEMULEN 1/35-28"
+}
+
+Question9
+
+db.getCollection('bioinf_mongo_examen').find({percentage_of_side_effects:{$gt:8}}).count()
+--> 399
+
+Question10
+
+db.getCollection('bioinf_mongo_examen').aggregate([
+{$group:
+{_id:'$company',avg_side_effect:{$avg:'$percentage_of_side_effects'}}
+},{$match:{avg_side_effect:{$gt:10}}},
+{$sort:{avg_side_effect:-1}}])
+{
+    "_id" : "Galderma Laboratories, L.P.",
+    "avg_side_effect" : 11.5
+}
+{
+    "_id" : "Watson Pharmaceuticals, Inc.",
+    "avg_side_effect" : 10.65
+}
+{
+    "_id" : "Durata Therapeutics, Inc.",
+    "avg_side_effect" : 10.5
+}
+
+Question11
+
+db.getCollection('bioinf_mongo_examen').find({drug:{$size:{$gt: 2}}},{percentage_of_side_effects: 1})
+--> not working

@@ -1,0 +1,56 @@
+Question4
+
+mysql> select gene_name, (seq_region_end - seq_region_start + 1) as length from gene order by length desc limit 1 offset 2;
++-----------+---------+
+| gene_name | length  |
++-----------+---------+
+| PARP1     | 2493040 |
++-----------+---------+
+
+
+Question5
+
+mysql> select gene_name, count(e.exon_id) from gene g join transcript t on g.gene_id=t.gene_id join exon_transcript et on t.transcript_id=et.transcript_id join exon e on et.exon_id=e.exon_id group by g.gene_id order by count(e.exon_id) desc limit 1;
++-----------+------------------+
+| gene_name | count(e.exon_id) |
++-----------+------------------+
+| SYNE1     |             1415 |
++-----------+------------------+
+
+Question6
+
+mysql> select chromosome, count(gene_id) as Nr_Of_Genes from gene where description rlike "breast cancer" group by chromosome order by Nr_Of_Genes desc limit 1;
++------------+-------------+
+| chromosome | Nr_Of_Genes |
++------------+-------------+
+| 16         |           2 |
++------------+-------------+
+
+mysql> select chromosome, count(*)as count_transcript from gene g join transcript t on g.gene_id=t.gene_id where chromosome=16 group by chromosome;
++------------+------------------+
+| chromosome | count_transcript |
++------------+------------------+
+| 16         |             3636 |
++------------+------------------+
+
+Question7
+
+mysql> select count(*) from exon;
++----------+
+| count(*) |
++----------+
+|   642590 |
++----------+
+
+mysql> select count(*) from exon_transcript;
++----------+
+| count(*) |
++----------+
+|  1178393 |
++----------+
+
+why difference?
+--> one transcript can have multiple exons
+--> the exon table only shows each exon once but in fact the exon can appear multiple times in the exon_transcript table
+
+
