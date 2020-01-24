@@ -1,0 +1,30 @@
+UNF
+DB(PersonnelNumber,Name,Date_of_birth,LabCode,LabName,ResearchCode,ResearchDescription,ResaerchSupervisor)
+
+NF1
+--> each cell single value
+--> enteries in column have same type
+--> Rows are uniquely identified
+
+DB(PersonnelNumber,Name,Date_of_birth,LabCode,LabName,ResearchCode,ResearchDescription,ResaerchSupervisor)
+
+NF2
+--> all atributes (non-key columns) dependent on the key
+
+the primary key in the main table will be PersonnelNumber
+LabName, ResearchDescription and ResaerchSupervisor tells us nothing about the PersonnelNumber
+we will put them in different tables: one that tells us information about the lab and one that tells us information over the research
+the primary key of the lab table will be LabCode and the primary key of research wil be ResearchCode
+
+DB(PersonnelNumber,Name,Date_of_birth,LabCode,ResearchCode) 
+DB(LabCode,LabName)
+DB(ResearchCode,ResearchDescription,ResaerchSupervisor)
+
+NF3
+--> all fields (columns) can be determined only by the Primary Key in the table and no other column
+
+this is already OK there are no columns left that are not determined on there primary key
+
+DB(PersonnelNumber,Name,Date_of_birth,LabCode,ResearchCode) 
+DB(LabCode,LabName)
+DB(ResearchCode,ResearchDescription,ResaerchSupervisor)
